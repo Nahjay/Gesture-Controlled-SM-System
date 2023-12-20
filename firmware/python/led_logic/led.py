@@ -52,5 +52,58 @@ class LED:
 
 
 if __name__ == "__main__":
-    strip = LED
-    strip.set_color(255, 0, 0)
+    # strip = LED()
+    # strip.set_color(255, 0, 0)
+    # Configuration
+    pixel_pin = board.D18  # GPIO pin connected to the NeoPixel strip
+    num_pixels = 8  # Number of NeoPixels in the strip
+    brightness = 0.2  # Brightness of the NeoPixels (0.0 to 1.0)
+
+    # Create a NeoPixel object
+    pixels = neopixel.NeoPixel(
+        pixel_pin, num_pixels, brightness=brightness, auto_write=False
+    )
+
+    # Function to set a solid color on the entire strip
+    def set_color(color):
+        pixels.fill(color)
+        pixels.show()
+
+    # Function to create a rainbow effect on the strip
+    def rainbow_cycle(wait):
+        for j in range(255):
+            for i in range(num_pixels):
+                pixel_index = (i * 256 // num_pixels) + j
+                pixels[i] = wheel(pixel_index & 255)
+            pixels.show()
+            time.sleep(wait)
+
+    # Function to generate rainbow colors
+    def wheel(pos):
+        if pos < 85:
+            return (int(pos * 3), int(255 - pos * 3), 0)
+        elif pos < 170:
+            pos -= 85
+            return (int(255 - pos * 3), 0, int(pos * 3))
+        else:
+            pos -= 170
+            return (0, int(pos * 3), int(255 - pos * 3))
+
+    # Main loop
+    try:
+        while True:
+            set_color((255, 0, 0))  # Set to red
+            time.sleep(2)
+
+            set_color((0, 255, 0))  # Set to green
+            time.sleep(2)
+
+            set_color((0, 0, 255))  # Set to blue
+            time.sleep(2)
+
+            rainbow_cycle(0.01)  # Rainbow effect
+
+    except KeyboardInterrupt:
+        # Turn off the NeoPixels when the script is interrupted
+        pixels.fill((0, 0, 0))
+        pixels.show()
