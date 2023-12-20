@@ -55,16 +55,44 @@ if __name__ == "__main__":
     # strip = LED()
     # strip.set_color(255, 0, 0)
     # Configuration
-    pixel_pin = board.D18  # GPIO pin connected to the NeoPixel strip
-    num_pixels = 100  # Number of NeoPixels in the strip
-    brightness = 1  # Brightness of the NeoPixels (0.0 to 1.0)
 
-    # Create a NeoPixel object
-    pixels = neopixel.NeoPixel(
-        pixel_pin, num_pixels, brightness=brightness, auto_write=False
-    )
+    pixels1 = neopixel.NeoPixel(board.D18, 30, brightness=0.1)
+    x = 0
+    pixels1.fill((0, 220, 0))
+    pixels1[10] = (255, 0, 0)
 
-    pixels.fill((255, 0, 0))
+    # Sleep for three seconds, You should now have all LEDs showing light with the first node
+    # Showing a different colour
+    time.sleep(4)
+
+    # Little Light slider script, will produce a nice loading bar effect that goes all the way up a small Strip
+    # and then all the way back
+    # This was created using a While Loop taking advantage of that arbitrary variable to determine
+    # which LED Node we will target/index with a different colour
+
+    # Below will loop until variable x has a value of 35
+    while x < 35:
+        pixels1[x] = (255, 0, 0)
+        pixels1[x - 5] = (255, 0, 100)
+        pixels1[x - 10] = (0, 0, 255)
+        # Add 1 to the counter
+        x = x + 1
+        # Add a small time pause which will translate to 'smoothly' changing colour
+        time.sleep(0.05)
+
+    # Below section is the same process as the above loop just in reverse
+    while x > -15:
+        pixels1[x] = (255, 0, 0)
+        pixels1[x + 5] = (255, 0, 100)
+        pixels1[x + 10] = (0, 255, 0)
+        x = x - 1
+        time.sleep(0.05)
+
+    # Add a brief time delay to appreciate what has happened
+    time.sleep(4)
+
+    # Complete the script by returning all the LED to off
+    pixels1.fill((0, 0, 0))
 
     # Function to set a solid color on the entire strip
     # def set_color(color):
