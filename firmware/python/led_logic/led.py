@@ -10,7 +10,7 @@ class LED:
 
     def __init__(self):
         """Initialize the LED"""
-        self.pixels = neopixel.NeoPixel(board.D18, 1, brightness=1, auto_write=False)
+        self.pixels = neopixel.NeoPixel(board.D18, 1, brightness=100, auto_write=False)
         self.pixels.fill((0, 0, 0))
         self.pixels.show()
 
@@ -49,3 +49,8 @@ class LED:
                 self.pixels[i] = self.wheel(idx & 255)
             self.pixels.show()
             time.sleep(wait)
+
+
+if __name__ == "__main__":
+    strip = LED
+    strip.set_color(255, 0, 0)

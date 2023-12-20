@@ -6,6 +6,7 @@ import os
 import requests
 import time
 import mediapipe as mp
+from firmware.python.led_logic.led import LED
 
 
 def recognize_fingers():
