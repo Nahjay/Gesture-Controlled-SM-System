@@ -10,14 +10,13 @@ class LED:
 
     def __init__(self):
         """Initialize the LED"""
-        self.pixels = neopixel.NeoPixel(board.D18, 1, brightness=100, auto_write=False)
-        self.pixels.fill((0, 0, 0))
-        self.pixels.show()
+        self.pixels = neopixel.NeoPixel(board.D18, 30, brightness=0.1)
+        # self.pixels.fill((0, 0, 0))
+        # self.pixels.show()
 
     def set_color(self, red, green, blue):
         """Set the color of the LED"""
         self.pixels.fill((red, green, blue))
-        self.pixels.show()
 
     def fade(self, red, green, blue, duration):
         """Fade the LED to the specified color over the specified duration"""
@@ -94,46 +93,9 @@ if __name__ == "__main__":
     # Complete the script by returning all the LED to off
     pixels1.fill((0, 0, 0))
 
-    # Function to set a solid color on the entire strip
-    # def set_color(color):
-    #     pixels.fill(color)
-    #     pixels.show()
-
-    # # Function to create a rainbow effect on the strip
-    # def rainbow_cycle(wait):
-    #     for j in range(255):
-    #         for i in range(num_pixels):
-    #             pixel_index = (i * 256 // num_pixels) + j
-    #             pixels[i] = wheel(pixel_index & 255)
-    #         pixels.show()
-    #         time.sleep(wait)
-
-    # # Function to generate rainbow colors
-    # def wheel(pos):
-    #     if pos < 85:
-    #         return (int(pos * 3), int(255 - pos * 3), 0)
-    #     elif pos < 170:
-    #         pos -= 85
-    #         return (int(255 - pos * 3), 0, int(pos * 3))
-    #     else:
-    #         pos -= 170
-    #         return (0, int(pos * 3), int(255 - pos * 3))
-
-    # # Main loop
-    # try:
-    #     while True:
-    #         set_color((255, 0, 0))  # Set to red
-    #         time.sleep(2)
-
-    #         set_color((0, 255, 0))  # Set to green
-    #         time.sleep(2)
-
-    #         set_color((0, 0, 255))  # Set to blue
-    #         time.sleep(2)
-
-    #         rainbow_cycle(0.01)  # Rainbow effect
-
-    # except KeyboardInterrupt:
-    #     # Turn off the NeoPixels when the script is interrupted
-    #     pixels.fill((0, 0, 0))
-    #     pixels.show()
+    strip = LED()
+    strip.set_color(255, 0, 0)
+    time.sleep(4)
+    strip.set_color(0, 255, 0)
+    time.sleep(4)
+    strip.set_color(0, 0, 255)
