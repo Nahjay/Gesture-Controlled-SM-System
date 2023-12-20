@@ -1,8 +1,16 @@
 """ Create a python script that will detect 5 fingers and make an API call to the server """
+import os
+import sys
+
+# Get the absolute path of the project's root directory
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+# Add the project root path to the system path
+sys.path.append(project_root)
+
 
 import cv2
 import numpy as np
-import os
 import requests
 import time
 import mediapipe as mp
