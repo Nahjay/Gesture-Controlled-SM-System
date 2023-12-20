@@ -11,8 +11,6 @@ class LED:
     def __init__(self):
         """Initialize the LED"""
         self.pixels = neopixel.NeoPixel(board.D18, 30, brightness=0.1)
-        # self.pixels.fill((0, 0, 0))
-        # self.pixels.show()
 
     def set_color(self, red, green, blue):
         """Set the color of the LED"""
@@ -99,3 +97,5 @@ if __name__ == "__main__":
     strip.set_color(0, 255, 0)
     time.sleep(4)
     strip.set_color(0, 0, 255)
+    strip.fade(255, 0, 0, 5)
+    strip.set_color(0, 0, 0)
