@@ -1,8 +1,8 @@
 """ Create a class for the LED """
 
 import time
-import board
 import neopixel
+import board
 
 
 class LED:
@@ -52,5 +52,5 @@ class LED:
 
 
 if __name__ == "__main__":
-    strip = LED()
+    strip = LED
     strip.set_color(255, 0, 0)
