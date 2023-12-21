@@ -19,10 +19,25 @@ export default function App() {
     }
   };
 
+  // Function to stop Gesture Recognition
+  const stopGestureRecognition = async () => {
+    console.log("Stopping Gesture Recognition...");
+
+    try {
+      const response = await fetch('http://192.168.0.161:8080/stop_gesture_recognition');
+      const data = await response.json();
+      setData(data);
+    }
+    catch (error) {
+      setError(error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text>Gesture Recognition Project!</Text>
       <Button title='Start Gesture Recognition' onPress={startGestureRecognition} />
+      <Button title='Stop Gesture Recognition' onPress={stopGestureRecognition} />
       <StatusBar style="auto" />
     </View>
   );
