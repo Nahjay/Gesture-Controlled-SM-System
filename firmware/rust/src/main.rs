@@ -1,6 +1,7 @@
 // Create Web API for my Raspberry Pi Gesture Recognition project
 
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder, Result};
+use actix_cors::Cors;
 use serde::{Serialize};
 
 #[derive(Serialize)]
@@ -26,8 +27,21 @@ async fn not_found() -> Result<HttpResponse> {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| App::new().service(healthcheck).default_service(web::route().to(not_found)))
-        .bind(("127.0.0.1", 8080))?
+    // Allow CORS
+   
+        HttpServer::new(move || {
+            let cors = Cors::default()
+                .allow_any_origin()
+                .allow_any_method()
+                .allow_any_header();
+    
+            App::new()
+                .wrap(cors)
+                .service(healthcheck)
+                .default_service(web::route().to(not_found))
+        })
+        .bind(("127.0.0.1", 8084))?
         .run()
         .await
+    
 }
