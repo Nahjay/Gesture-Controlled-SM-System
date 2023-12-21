@@ -51,6 +51,27 @@ async fn start_gesture_recognition() -> impl Responder {
     HttpResponse::Ok().json(response)
 }
 
+#[get("/stop_gesture_recognition")]
+async fn stop_gesture_recognition() -> impl Responder {
+    // Call the gesture recognition script
+    let output = std::process::Command::new("bash")
+        .arg("../firmware/python/scripts/end.sh")
+        .output()
+        .expect("failed to execute process");
+
+    // Check if the gesture recognition script was executed successfully
+    if output.status.success() {
+        debug!("Gesture Recognition Stopped");
+    } else {
+        error!("Gesture Recognition Failed");
+    }
+
+    let response = Response {
+        message: "Gesture Recognition Stopped".to_string(),
+    };
+    HttpResponse::Ok().json(response)
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     /* Instantiate Logger */
@@ -80,6 +101,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(cors)
             .service(healthcheck)
             .service(start_gesture_recognition)
+            .service(stop_gesture_recognition)
             .default_service(web::route().to(not_found))
     })
     .bind(("127.0.0.1", 8084))?
