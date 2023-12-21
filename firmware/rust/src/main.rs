@@ -28,6 +28,29 @@ async fn not_found() -> Result<HttpResponse> {
     Ok(HttpResponse::NotFound().json(response))
 }
 
+#[get("/start_gesture_recognition")]
+async fn start_gesture_recognition() -> impl Responder {
+    
+    // Call the gesture recognition script
+    let output = std::process::Command::new("sudo")
+        .arg("python")
+        .arg("~/Documents/Projects/Raspberry-Pi-Gesture-Controlled-Led-System/firmware/python/gesture_recognition/gesture_recognition.py")
+        .output()
+        .expect("failed to execute process");
+    
+    // Check if the gesture recognition script was executed successfully
+    if output.status.success() {
+        debug!("Gesture Recognition Started");
+    } else {
+        error!("Gesture Recognition Failed");
+    }
+
+    let response = Response {
+        message: "Gesture Recognition Started".to_string(),
+    };
+    HttpResponse::Ok().json(response)
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     /* Instantiate Logger */
@@ -56,6 +79,7 @@ async fn main() -> std::io::Result<()> {
             App::new()
                 .wrap(cors)
                 .service(healthcheck)
+                .service(start_gesture_recognition)
                 .default_service(web::route().to(not_found))
         })
         .bind(("127.0.0.1", 8084))?
