@@ -1,89 +1,57 @@
-# Gesture-Controlled-SM-System
-
-# Gesture-Controlled Smart Home System
+# Raspberry Pi Gesture-Controlled LED System
 
 ## Project Overview
 
-The Gesture-Controlled Smart Home System is a comprehensive home automation project that leverages hardware sensors, AI-based gesture recognition, and a mobile app interface to enable intuitive and seamless home automation. This project showcases expertise in embedded systems, microcontrollers, Internet of Things (IoT), machine learning, full-stack development, and responsive web design.
+This project is a gesture-controlled LED system that uses a Raspberry Pi, a WS2812B LED strip, and a camera to detect hand gestures and change the LED colors accordingly. The system is controlled via a mobile app that communicates with a Rust API running on the Raspberry Pi. The Rust API manages the gesture recognition python process and communicates with the LED controller (also written in python) to change the LED colors.
 
-![Smart Home System](link_to_image.png)
-
-## Table of Contents
-- [Project Description](#project-description)
-- [Features](#features)
-- [Hardware Requirements](#hardware-requirements)
-- [Software Requirements](#software-requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- **LED Controller (Python):** Controls the LED strip.
+- **Gesture Recognition (Python + OpenCV):** Detects hand gestures and changes LED colors.
+- **Rust API (Rust):** Manages gesture recognition via HTTP endpoints.
+- **Mobile App (React Native + Expo):** Interface to control the system.
 
 ## Project Description
 
-The Gesture-Controlled Smart Home System is designed to provide an intuitive and seamless interface for controlling various home automation tasks using gestures. Key project highlights include:
+1. **LED Controller:**
+   - *Requirements:* Python, WS2812B LED strip, Raspberry Pi.
+   - *Usage:* `python led_controller.py`
+  
+2. **Gesture Recognition:**
+   - *Requirements:* Python, OpenCV, camera.
+   - *Usage:* `python gesture_recognition.py`
 
-- Integration of hardware sensors for gesture recognition.
-- Implementation of machine learning algorithms (Python) for accurate gesture recognition.
-- Development of a mobile app interface using React for remote control.
-- Utilization of Node.js and Express.js for backend server implementation.
-- Responsive web design to ensure user-friendly access on various devices.
+3. **Rust API:**
+   - *Requirements:* Rust, Raspberry Pi.
+   - *Build:* `cargo build --target your_target_directory`
+   - *Run:* `./your_executable`
+  
+4. **Mobile App:**
+   - *Requirements:* Node.js, npm, Expo CLI.
+   - *Start:* `cd mobile-app && expo start`
 
 ## Features
 
-- Gesture-controlled home automation.
-- AI-based gesture recognition.
-- Mobile app interface for remote control.
-- Proficiency in Node.js and Express.js for backend development.
-- Integration of machine learning algorithms for gesture recognition.
-- Responsive web design for user-friendly access.
+- LED control based on hand gestures.
+- Rust API for gesture recognition initiation and termination.
+- Mobile app interface for user-friendly control.
 
 ## Hardware Requirements
 
-To replicate this project, you will need the following hardware components:
-
-- Hardware sensors (e.g., accelerometers, gyroscopes) for gesture detection.
-- Microcontroller board for sensor data processing.
-- Any additional hardware specific to your home automation tasks.
+- Raspberry Pi.
+- WS2812B LED strip.
+- Camera for gesture recognition.
 
 ## Software Requirements
 
-The software components and tools used in this project include:
+- Python.
+- Rust.
+- Node.js.
+- Expo CLI.
+- OpenCV.
 
-- Python for implementing machine learning algorithms.
-- Node.js and Express.js for backend server development.
-- React for mobile app interface development.
-- CSS and SCSS for responsive web design.
-- Any libraries or frameworks specific to your hardware sensors and microcontroller.
-
-## Installation
-
-1. Clone this repository to your local machine using Git:
-
-
-2. Set up your hardware sensors and microcontroller board following the manufacturer's instructions.
-
-3. Install the necessary software tools and libraries required for your specific hardware and software components.
-
-4. Configure and deploy the backend server using Node.js and Express.js.
-
-5. Develop and deploy the mobile app interface using React.
-
-6. Implement machine learning algorithms for gesture recognition using Python.
-
-7. Ensure responsive web design using CSS and SCSS for user-friendly access.
-
-## Usage
-
-1. Power up your hardware sensors and microcontroller.
-
-2. Launch the mobile app interface to remotely control home automation tasks using gestures.
-
-3. Monitor and evaluate the gesture recognition accuracy and system performance.
 
 ## Contributing
 
-This is a solo project, and contributions are not currently accepted. However, you are welcome to fork the repository and use it as a starting point for your own gesture-controlled smart home projects.
+This is a solo project, and contributions are not currently accepted. However, you are welcome to fork the repository and use it as a starting point for your own gesture-controlled led projects.
 
 ## License
 
