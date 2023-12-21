@@ -171,7 +171,7 @@ def recognize_fingers():
                     ):
                         strip.set_color(0, 0, 255)
 
-            cv2.imshow("Hand Gesture Recognition", image)
+            # cv2.imshow("Hand Gesture Recognition", image)
 
             if cv2.waitKey(1) & 0xFF == ord("q"):
                 break
