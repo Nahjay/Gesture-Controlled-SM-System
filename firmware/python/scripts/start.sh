@@ -1,3 +1,2 @@
-cd ..
-cd gesture_recognition
+cd ../firmware/python/gesture_recognition/   
 sudo python3 gesture_recognition.py
