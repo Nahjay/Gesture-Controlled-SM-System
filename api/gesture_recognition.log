@@ -1,0 +1,30 @@
+02:50:59 [DEBUG] (1) rust: Logger initialized
+02:50:59 [INFO] starting 16 workers
+02:50:59 [INFO] Actix runtime found; starting in Actix runtime
+02:51:00 [ERROR] Gesture Recognition Failed
+02:51:01 [ERROR] Gesture Recognition Failed
+02:51:03 [ERROR] Gesture Recognition Failed
+02:51:15 [ERROR] Gesture Recognition Failed
+02:51:16 [ERROR] Gesture Recognition Failed
+02:51:17 [ERROR] Gesture Recognition Failed
+02:51:18 [ERROR] Gesture Recognition Failed
+02:51:19 [ERROR] Gesture Recognition Failed
+02:51:22 [INFO] SIGINT received; starting forced shutdown
+02:51:22 [DEBUG] (18) actix_server::accept: paused accepting connections on 127.0.0.1:8084
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] accept thread stopped
+02:51:22 [INFO] force shutdown worker, closing 1 connections
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
+02:51:22 [INFO] shutting down idle worker
