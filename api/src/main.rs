@@ -104,7 +104,7 @@ async fn main() -> std::io::Result<()> {
             .service(stop_gesture_recognition)
             .default_service(web::route().to(not_found))
     })
-    .bind(("127.0.0.1", 8084))?
+    .bind(("192.168.0.161", 8080))?
     .run()
     .await
 }
