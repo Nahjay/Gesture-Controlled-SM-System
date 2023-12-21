@@ -156,12 +156,10 @@ def recognize_fingers():
 
                     # Open hand gesture
                     if thumb_pinky_distance > 150 and thumb_ring_distance > 150:
-                        print("Open hand gesture")
                         strip.set_color(0, 255, 0)
 
                     # Fist gesture
                     elif thumb_index_distance < 50 or index_middle_distance < 50:
-                        print("Fist gesture")
                         strip.set_color(255, 0, 0)
 
                     # Peace gesture
@@ -171,7 +169,6 @@ def recognize_fingers():
                         and thumb_tip_y > index_mcp_y
                         and thumb_ring_distance < 50
                     ):
-                        print("Peace gesture")
                         strip.set_color(0, 0, 255)
 
             cv2.imshow("Hand Gesture Recognition", image)
