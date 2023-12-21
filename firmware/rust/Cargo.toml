@@ -9,5 +9,7 @@ edition = "2021"
 actix-cors = "0.6.5"
 actix-web = "4.4.0"
 chrono = { version = "0.4.31", features = ["serde"] }
+log = "0.4.20"
 serde = { version = "1.0.193", features = ["derive"] }
+simplelog = "0.12.1"
 uuid = { version = "1.6.1", features = ["v4"] }

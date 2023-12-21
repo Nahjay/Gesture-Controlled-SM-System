@@ -3,6 +3,9 @@
 use actix_web::{get, web, App, HttpResponse, HttpServer, Responder, Result};
 use actix_cors::Cors;
 use serde::{Serialize};
+use simplelog::{CombinedLogger, TermLogger, WriteLogger};
+use log::{debug, error};
+use std::fs::File;
 
 #[derive(Serialize)]
 pub struct Response {
@@ -27,8 +30,23 @@ async fn not_found() -> Result<HttpResponse> {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    // Allow CORS
-   
+    /* Instantiate Logger */
+    match CombinedLogger::init(vec![
+        TermLogger::new(
+            log::LevelFilter::Debug,
+            simplelog::Config::default(),
+            simplelog::TerminalMode::Mixed,
+            simplelog::ColorChoice::Auto,
+        ),
+        WriteLogger::new(
+            log::LevelFilter::Debug,
+            simplelog::Config::default(),
+            File::create("gesture_recognition.log").unwrap(),
+        ),
+    ]) {
+        Ok(_) => debug!("Logger initialized"),
+        Err(e) => debug!("Logger failed to initialize: {}", e),
+    }
         HttpServer::new(move || {
             let cors = Cors::default()
                 .allow_any_origin()
