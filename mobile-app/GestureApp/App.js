@@ -13,7 +13,7 @@ export default function App() {
 
     const handleClick = async () => {
       try {
-        const response = await fetch('http://192.168.0.105:5000/start_gesture_recognition');
+        const response = await fetch('http://192.168.0.105:8080/start_gesture_recognition');
         const data = await response.json();
         setData(data);
       }
