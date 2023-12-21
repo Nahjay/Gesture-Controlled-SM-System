@@ -14,7 +14,8 @@ import numpy as np
 import requests
 import time
 import mediapipe as mp
-from led import LED
+
+# from led import LED
 
 
 def recognize_fingers():
@@ -22,7 +23,7 @@ def recognize_fingers():
     cap = cv2.VideoCapture("/dev/video0")  # Adjust the device path as needed
 
     # Initialize the LED
-    strip = LED()
+    # strip = LED()
 
     # Initialize mediapipe
     mp_hands = mp.solutions.hands
@@ -159,11 +160,7 @@ def recognize_fingers():
                         # strip.set_color(0, 255, 0)
 
                     # Fist gesture
-                    elif (
-                        thumb_index_distance < 50
-                        and index_middle_distance < 50
-                        and thumb_tip_y > index_mcp_y
-                    ):
+                    elif thumb_index_distance < 50 and index_middle_distance < 50:
                         print("Fist gesture")
                         # strip.set_color(255, 0, 0)
 
